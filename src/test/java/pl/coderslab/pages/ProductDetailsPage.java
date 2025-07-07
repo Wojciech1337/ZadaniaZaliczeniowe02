@@ -10,6 +10,9 @@ public class ProductDetailsPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    @FindBy(css = "span.discount.discount-percentage")
+    private WebElement discountLabel;
+
     @FindBy(id = "group_1")
     private WebElement sizeDropdown;
 
@@ -22,6 +25,8 @@ public class ProductDetailsPage {
     // 🔹 Przycisk "Proceed to checkout" w modalu po dodaniu do koszyka
     @FindBy(css = "div#blockcart-modal a.btn.btn-primary")
     private WebElement proceedToCheckoutFromModalButton;
+
+
 
     public ProductDetailsPage(WebDriver driver) {
         this.driver = driver;
@@ -58,5 +63,9 @@ public class ProductDetailsPage {
         // 🟡 Upewnij się, że modal został otwarty
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("blockcart-modal")));
         wait.until(ExpectedConditions.elementToBeClickable(proceedToCheckoutFromModalButton)).click();
+    }
+    public String getProductDiscount() {
+        wait.until(ExpectedConditions.visibilityOf(discountLabel));
+        return discountLabel.getText().trim();
     }
 }

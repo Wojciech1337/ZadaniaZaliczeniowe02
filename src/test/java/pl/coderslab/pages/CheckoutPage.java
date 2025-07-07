@@ -46,6 +46,13 @@ public class CheckoutPage {
     @FindBy(xpath = "//span[text()='Total (tax incl.)']/ancestor::tr/td[2]")
     private WebElement totalAmount;
 
+    @FindBy(css = "a.account")
+    private WebElement accountLink;
+
+    @FindBy(css = "a[href*='history']")
+    private WebElement orderHistoryLink;
+
+
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -118,4 +125,22 @@ public class CheckoutPage {
             throw new RuntimeException("Failed to take screenshot: " + e.getMessage());
         }
     }
+
+    public void goToOrderHistory() {
+        wait.until(ExpectedConditions.elementToBeClickable(accountLink)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(orderHistoryLink)).click();
+    }
+
+    public boolean isOrderWithStatusAndAmountOnList(String expectedStatus, String expectedAmount) {
+        WebElement firstRow = driver.findElement(By.cssSelector("table tbody tr"));
+
+        String status = firstRow.findElement(By.cssSelector("td span.label")).getText().trim();
+        String price = firstRow.findElement(By.cssSelector("td.text-xs-right")).getText().trim();
+
+        return status.equals(expectedStatus) && price.equals(expectedAmount);
+    }
 }
+
+
+
+

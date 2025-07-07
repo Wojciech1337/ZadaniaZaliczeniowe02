@@ -4,6 +4,7 @@ Feature: Purchase Hummingbird Printed Sweater
     Given The user is on the login page
     When The user logs in with email "<email>" and password "<password>"
     And The user searches for "<product>" and selects the product
+    Then The product discount should be "SAVE 20%"
     And The user selects size "<size>" and quantity <quantity>
     And The user adds the product to the cart and proceeds to checkout
     And The user proceeds from cart summary
@@ -14,6 +15,8 @@ Feature: Purchase Hummingbird Printed Sweater
     And The user confirms the order
     Then The order should be confirmed
     And The user sees the confirmation with amount and saves screenshot
+    Then The user goes to order history
+    And The user checks if order is on the list with status "Awaiting check payment" and the same amount as two steps before
 
     Examples:
       | email             | password    | size | quantity | product                     |

@@ -45,12 +45,15 @@ public class LoginSteps {
 
     @Given("The user is on the login page")
     public void theUserIsOnTheLoginPage() {
+        System.out.println("🔐 User is on the login page");
         loginPage.open();
     }
 
     @When("The user logs in with email {string} and password {string}")
     public void theUserLogsInWithEmailAndPassword(String email, String password) {
         loginPage.login(email, password);
+        System.out.println("🔑  User logged in successfully");
+
     }
 
 }
