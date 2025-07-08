@@ -1,44 +1,55 @@
 package pl.coderslab.pages;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.support.*;
+import org.openqa.selenium.support.ui.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 
+
+// Page Object dla strony Checkout. Obejmuje wszystkie kroki: od koszyka po historię zamówień.
+
+
 public class CheckoutPage {
+
     private WebDriver driver;
     private WebDriverWait wait;
+
+    // 🔹 Sekcja: Koszyk - Podsumowanie zamówienia
 
     @FindBy(css = "a.btn.btn-primary[href*='order']")
     private WebElement proceedFromCartSummaryButton;
 
+    // 🔹 Sekcja: Adres
+
     @FindBy(css = "button[name='confirm-addresses']")
     private WebElement confirmAddressButton;
+
+
+    // 🔹 Sekcja: Dostawa
 
     @FindBy(name = "confirmDeliveryOption")
     private WebElement continueFromDeliveryButton;
 
-    // INPUT radio (ukryty lub nie)
+
+    // 🔹 Sekcja: Płatność
+
     @FindBy(id = "payment-option-1")
     private WebElement paymentOptionCheckInput;
 
-    // LABEL do opcji płatności Pay by Check
     @FindBy(css = "label[for='payment-option-1']")
     private WebElement paymentOptionCheckLabel;
 
-    // Label zgody na warunki
     @FindBy(css = "label.js-terms[for='conditions_to_approve[terms-and-conditions]']")
     private WebElement agreeTermsLabel;
 
     @FindBy(css = "button.btn.btn-primary.center-block[type='submit']")
     private WebElement confirmOrderButton;
+
+    // 🔹 Sekcja: Potwierdzenie zamówienia
 
     @FindBy(css = "h3.card-title")
     private WebElement orderConfirmationHeader;
@@ -46,12 +57,15 @@ public class CheckoutPage {
     @FindBy(xpath = "//span[text()='Total (tax incl.)']/ancestor::tr/td[2]")
     private WebElement totalAmount;
 
+    // 🔹 Sekcja: Konto / Historia zamówień
+
     @FindBy(css = "a.account")
     private WebElement accountLink;
 
     @FindBy(css = "a[href*='history']")
     private WebElement orderHistoryLink;
 
+    // 🔹 Konstruktor
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
@@ -59,28 +73,35 @@ public class CheckoutPage {
         PageFactory.initElements(driver, this);
     }
 
+    // 🔹 Metody akcji - Koszyk
+
     public void proceedFromCartSummary() {
         wait.until(ExpectedConditions.elementToBeClickable(proceedFromCartSummaryButton)).click();
     }
+
+    // 🔹 Metody akcji - Adres
 
     public void confirmAddress() {
         wait.until(ExpectedConditions.elementToBeClickable(confirmAddressButton)).click();
     }
 
+    // 🔹 Metody akcji - Dostawa
+
     public void proceedFromDelivery() {
         wait.until(ExpectedConditions.elementToBeClickable(continueFromDeliveryButton)).click();
     }
+
+    // 🔹 Metody akcji - Płatność
 
     public void choosePaymentMethod(String paymentMethod) {
         if (paymentMethod.equalsIgnoreCase("Pay by Check")) {
             try {
                 wait.until(ExpectedConditions.elementToBeClickable(paymentOptionCheckLabel)).click();
             } catch (ElementClickInterceptedException | TimeoutException e) {
-                // fallback - kliknięcie JS jeśli normalny click nie działa
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", paymentOptionCheckLabel);
             }
         }
-        // Dodaj inne metody płatności w razie potrzeby
+        // Można dodać inne metody płatności (np. karta, przelew)
     }
 
     public void agreeToTerms() {
@@ -95,17 +116,15 @@ public class CheckoutPage {
         wait.until(ExpectedConditions.elementToBeClickable(confirmOrderButton)).click();
     }
 
+    // 🔹 Metody akcji - Potwierdzenie
+
     public boolean isOrderConfirmed() {
         try {
-            WebElement confirmationHeader = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.cssSelector("h3.card-title")
-            ));
+            WebElement confirmationHeader = wait.until(ExpectedConditions.visibilityOf(orderConfirmationHeader));
             return confirmationHeader.getText().contains("YOUR ORDER IS CONFIRMED");
         } catch (TimeoutException | NoSuchElementException e) {
             return false;
         }
-
-
     }
 
     public String getTotalAmount() {
@@ -119,12 +138,14 @@ public class CheckoutPage {
             File destination = new File(filePath);
             Files.createDirectories(destination.getParentFile().toPath());
             Files.copy(source.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Screenshot saved to: " + filePath);
+            System.out.println("✅ Screenshot zapisany do: " + filePath);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Failed to take screenshot: " + e.getMessage());
+            throw new RuntimeException("❌ Nie udało się zapisać screenshota: " + e.getMessage());
         }
     }
+
+    // 🔹 Metody akcji - Historia zamówień
 
     public void goToOrderHistory() {
         wait.until(ExpectedConditions.elementToBeClickable(accountLink)).click();
@@ -133,14 +154,9 @@ public class CheckoutPage {
 
     public boolean isOrderWithStatusAndAmountOnList(String expectedStatus, String expectedAmount) {
         WebElement firstRow = driver.findElement(By.cssSelector("table tbody tr"));
-
         String status = firstRow.findElement(By.cssSelector("td span.label")).getText().trim();
         String price = firstRow.findElement(By.cssSelector("td.text-xs-right")).getText().trim();
 
         return status.equals(expectedStatus) && price.equals(expectedAmount);
     }
 }
-
-
-
-

@@ -3,44 +3,39 @@ package pl.coderslab.stepdefinitions;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pl.coderslab.pages.LoginPage;
 import pl.coderslab.pages.MyAccountPage;
 
+import java.time.Duration;
+
 public class LoginSteps {
 
-    public static WebDriver driver; // udostępniony driver
+    // 🔄 Udostępniony driver dla całego scenariusza
+    public static WebDriver driver;
 
     private LoginPage loginPage;
     private MyAccountPage myAccountPage;
 
     @Before
     public void setUp() {
-        // Ustaw ścieżkę do chromedrivera, jeśli to konieczne np.:
-        // System.setProperty("webdriver.chrome.driver", "ścieżka/do/chromedriver.exe");
-
+        // 🔧 Inicjalizacja przeglądarki i domyślnych timeoutów
         driver = new ChromeDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
+        // 🧱 Inicjalizacja stron (Page Object)
         loginPage = new LoginPage(driver);
         myAccountPage = new MyAccountPage(driver);
     }
 
     @After
     public void tearDown() {
-        try {
-            // ⏳ pauza 5 sekund, aby zobaczyć wynik testu przed zamknięciem
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        // 🧹 Zamknięcie przeglądarki po teście
         if (driver != null) {
             driver.quit();
         }
-
     }
 
     @Given("The user is on the login page")
@@ -53,7 +48,5 @@ public class LoginSteps {
     public void theUserLogsInWithEmailAndPassword(String email, String password) {
         loginPage.login(email, password);
         System.out.println("🔑  User logged in successfully");
-
     }
-
 }
