@@ -15,7 +15,7 @@ public class CheckoutSteps {
         this.checkoutPage = new CheckoutPage(driver);
     }
 
-    // Krok odpowiadający za przejście z podsumowania koszyka do kolejnego etapu checkoutu
+    // Podsumowania koszyka
     @And("The user proceeds from cart summary")
     public void theUserProceedsFromCartSummary() {
         try {
@@ -48,7 +48,7 @@ public class CheckoutSteps {
         System.out.println("💳 User chose payment method: " + paymentMethod);
     }
 
-    // Krok akceptujący regulamin (terms of service)
+    // Krok akceptujący  (terms of service)
     @And("The user agrees to the terms of service")
     public void theUserAgreesToTheTermsOfService() {
         checkoutPage.agreeToTerms();

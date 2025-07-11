@@ -4,36 +4,38 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 
-// Page Object Model dla strony "My Account" użytkownika.
-
+ //Klasa reprezentuje stronę "Moje konto"
 public class MyAccountPage {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
-    // ======= Lokatory =======
+    // Link do wylogowania się z konta użytkownika
+    @FindBy(css = "a[href*='mylogout']")
+    private WebElement signOutLink;
 
-    @FindBy(css = "h1.page-title")
-    private WebElement accountHeader;
-
-    // ======= Konstruktor =======
+    //Konstruktor klasy – inicjalizuje elementy strony oraz WebDriverWait.
 
     public MyAccountPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver, this); // Inicjalizacja elementów oznaczonych @FindBy
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Ustawienie explicite waita (10 sekund)
     }
 
-    // ======= Metody działania =======
+    //Metoda sprawdzająca, czy link "Wyloguj się" jest widoczny.
 
-
-     // Sprawdza, czy użytkownik znajduje się na stronie "My Account".  return true jeśli nagłówek jest widoczny i zawiera tekst "My account"
-
-    public boolean isOnAccountPage() {
+    public boolean isSignOutVisible() {
         try {
-            return accountHeader.isDisplayed() && accountHeader.getText().contains("My account");
+            wait.until(ExpectedConditions.visibilityOf(signOutLink)); // Czeka aż element będzie widoczny
+            return signOutLink.isDisplayed();
         } catch (Exception e) {
-            return false;
+            return false; // Gdy element nie istnieje lub jest niewidoczny
         }
     }
 }

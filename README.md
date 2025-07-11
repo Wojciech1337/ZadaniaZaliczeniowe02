@@ -34,7 +34,7 @@ Testowany scenariusz dotyczy sklepu internetowego [MyStore TestLab](https://myst
 - `ProductDetailsSteps.java` – wybór rozmiaru i ilości, dodanie do koszyka
 - `CheckoutSteps.java` – finalizacja zamówienia i płatność
 - `OrderHistorySteps.java` - weryfikacja historii zamówień
-- `src/test/resources/features` – pliki `.feature` z opisem scenariuszy testowych
+- `src/Cucumber/features` – pliki `.feature` z opisem scenariuszy testowych
 - `screenshots/` – katalog z zapisanymi zrzutami ekranu z potwierdzeniem zamówienia
 
 
@@ -47,5 +47,5 @@ Testowany scenariusz dotyczy sklepu internetowego [MyStore TestLab](https://myst
 ## Autor
 
 Projekt wykonany w ramach kursu Automatyzacji Testów – CodersLab  
-Autor: [Wojciech Basista]
+Autor: [Wojciech Basista](https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git)
 

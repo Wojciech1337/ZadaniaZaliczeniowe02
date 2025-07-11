@@ -13,7 +13,6 @@ public class ProductDetailsPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // ======= Lokatory =======
 
     @FindBy(css = "span.discount.discount-percentage")
     private WebElement discountLabel;
@@ -31,7 +30,6 @@ public class ProductDetailsPage {
     @FindBy(css = "div#blockcart-modal a.btn.btn-primary")
     private WebElement proceedToCheckoutFromModalButton;
 
-    // ======= Konstruktor =======
 
     public ProductDetailsPage(WebDriver driver) {
         this.driver = driver;
@@ -39,7 +37,6 @@ public class ProductDetailsPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    // ======= Metody działania =======
 
     // Wybiera rozmiar z dropdowna po nazwie widocznej na stronie (np. "M").
 

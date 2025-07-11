@@ -18,24 +18,24 @@ public class CheckoutPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // 🔹 Sekcja: Koszyk - Podsumowanie zamówienia
+    // Podsumowanie zamówienia
 
     @FindBy(css = "a.btn.btn-primary[href*='order']")
     private WebElement proceedFromCartSummaryButton;
 
-    // 🔹 Sekcja: Adres
+    // Adres
 
     @FindBy(css = "button[name='confirm-addresses']")
     private WebElement confirmAddressButton;
 
 
-    // 🔹 Sekcja: Dostawa
+    // Dostawa
 
     @FindBy(name = "confirmDeliveryOption")
     private WebElement continueFromDeliveryButton;
 
 
-    // 🔹 Sekcja: Płatność
+    // Płatność
 
     @FindBy(id = "payment-option-1")
     private WebElement paymentOptionCheckInput;
@@ -49,7 +49,7 @@ public class CheckoutPage {
     @FindBy(css = "button.btn.btn-primary.center-block[type='submit']")
     private WebElement confirmOrderButton;
 
-    // 🔹 Sekcja: Potwierdzenie zamówienia
+    // Potwierdzenie zamówienia
 
     @FindBy(css = "h3.card-title")
     private WebElement orderConfirmationHeader;
@@ -57,7 +57,7 @@ public class CheckoutPage {
     @FindBy(xpath = "//span[text()='Total (tax incl.)']/ancestor::tr/td[2]")
     private WebElement totalAmount;
 
-    // 🔹 Sekcja: Konto / Historia zamówień
+    // Historia zamówień
 
     @FindBy(css = "a.account")
     private WebElement accountLink;
@@ -65,7 +65,7 @@ public class CheckoutPage {
     @FindBy(css = "a[href*='history']")
     private WebElement orderHistoryLink;
 
-    // 🔹 Konstruktor
+    // Konstruktor
 
     public CheckoutPage(WebDriver driver) {
         this.driver = driver;
@@ -73,25 +73,21 @@ public class CheckoutPage {
         PageFactory.initElements(driver, this);
     }
 
-    // 🔹 Metody akcji - Koszyk
+    // Metody akcji
 
     public void proceedFromCartSummary() {
         wait.until(ExpectedConditions.elementToBeClickable(proceedFromCartSummaryButton)).click();
     }
 
-    // 🔹 Metody akcji - Adres
-
     public void confirmAddress() {
         wait.until(ExpectedConditions.elementToBeClickable(confirmAddressButton)).click();
     }
 
-    // 🔹 Metody akcji - Dostawa
 
     public void proceedFromDelivery() {
         wait.until(ExpectedConditions.elementToBeClickable(continueFromDeliveryButton)).click();
     }
 
-    // 🔹 Metody akcji - Płatność
 
     public void choosePaymentMethod(String paymentMethod) {
         if (paymentMethod.equalsIgnoreCase("Pay by Check")) {
@@ -101,7 +97,7 @@ public class CheckoutPage {
                 ((JavascriptExecutor) driver).executeScript("arguments[0].click();", paymentOptionCheckLabel);
             }
         }
-        // Można dodać inne metody płatności (np. karta, przelew)
+
     }
 
     public void agreeToTerms() {
@@ -116,7 +112,6 @@ public class CheckoutPage {
         wait.until(ExpectedConditions.elementToBeClickable(confirmOrderButton)).click();
     }
 
-    // 🔹 Metody akcji - Potwierdzenie
 
     public boolean isOrderConfirmed() {
         try {
@@ -145,7 +140,6 @@ public class CheckoutPage {
         }
     }
 
-    // 🔹 Metody akcji - Historia zamówień
 
     public void goToOrderHistory() {
         wait.until(ExpectedConditions.elementToBeClickable(accountLink)).click();

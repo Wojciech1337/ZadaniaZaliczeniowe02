@@ -13,7 +13,7 @@ public class SearchProductPage {
 
     private WebDriver driver;
 
-    // ======= Lokatory =======
+    // Lokatory
 
     @FindBy(name = "s")
     private WebElement searchInput;
@@ -31,8 +31,6 @@ public class SearchProductPage {
         PageFactory.initElements(driver, this);
     }
 
-    // ======= Metody działania =======
-
 
      //Wpisuje nazwę produktu i zatwierdza wyszukiwanie klawiszem ENTER. Nazwa produktu do wyszukania.
 
@@ -48,7 +46,7 @@ public class SearchProductPage {
         productLink.click();
     }
 
-     //Getter do oczekiwania na widoczność pierwszego produktu. Return WebElement reprezentujący pierwszy produkt.
+     //Getter do oczekiwania na widoczność pierwszego produktu.
 
     public WebElement getProductLink() {
         return productLink;

@@ -43,7 +43,7 @@ public class OrderHistorySteps {
         System.out.println("📜 Navigating to order history...");
     }
 
-    // Krok: Weryfikacja, czy zamówienie o określonym statusie i kwocie jest na liście zamówień.
+    // Weryfikacja, czy zamówienie o określonym statusie i kwocie jest na liście zamówień.
     @And("The user checks if order is on the list with status {string} and the same amount as two steps before")
     public void theUserChecksOrderStatusAndAmount(String expectedStatus) {
         Assert.assertNotNull("Confirmed order amount must be saved from two steps before", confirmationAmount);
