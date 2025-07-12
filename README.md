@@ -30,8 +30,7 @@ Testowany scenariusz dotyczy sklepu internetowego [MyStore TestLab](https://myst
 - `src/test/java/pl/coderslab/pages/` – klasy Page Object (np. `LoginPage`, `SearchProductPage`, `CheckoutPage`, `MyAccountPage`, `ProductDetailsPage`)
 - `src/test/java/pl/coderslab/stepdefinitions/` – definicje kroków scenariuszy Cucumbera, m.in.:
 - `LoginSteps.java` – logowanie do sklepu
-- `SearchProductSteps.java` – wyszukiwanie produktu
-- `ProductDetailsSteps.java` – wybór rozmiaru i ilości, dodanie do koszyka
+- `PurchaseSteps.java` - 
 - `CheckoutSteps.java` – finalizacja zamówienia i płatność
 - `OrderHistorySteps.java` - weryfikacja historii zamówień
 - `src/Cucumber/features` – pliki `.feature` z opisem scenariuszy testowych
