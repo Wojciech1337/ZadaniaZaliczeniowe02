@@ -27,8 +27,6 @@ Automatyczny test odwzorowuje rzeczywiste zachowanie użytkownika i obejmuje:
 Testowany system:  
 👉 https://mystore-testlab.coderslab.pl
 
-Projekt został wykonany w ramach kursu Automatyzacji Testów.
-
 ---
 
 ## Technologie
@@ -43,7 +41,7 @@ Projekt został wykonany w ramach kursu Automatyzacji Testów.
 
 ---
 
-##  Wymagania
+## Wymagania
 
 Przed uruchomieniem testów automatycznych należy mieć zainstalowane:
 
@@ -60,24 +58,27 @@ Przed uruchomieniem testów automatycznych należy mieć zainstalowane:
 Projekt jest zorganizowany zgodnie z dobrymi praktykami automatyzacji testów i wykorzystuje architekturę Page Object Model.
 
 ```
-ZadaniaZaliczeniowe02
-pages/
- ├── CheckoutPage.java
- ├── LoginPage.java
- ├── MyAccountPage.java
- ├── ProductDetailsPage.java
- └── SearchProductPage.java
+ZadaniaZaliczeniowe02/
+├── src/
+│   ├── test/java/pl/coderslab/pages/
+│   │   ├── CheckoutPage.java
+│   │   ├── LoginPage.java
+│   │   ├── MyAccountPage.java
+│   │   ├── ProductDetailsPage.java
+│   │   └── SearchProductPage.java
+│   │
+│   └── test/java/pl/coderslab/stepdefinitions/
+│       ├── CheckoutSteps.java
+│       ├── LoginSteps.java
+│       ├── OrderHistorySteps.java
+│       └── PurchaseSteps.java
+│
+│   └── test/resources/Cucumber/features/
+│       └── purchasing-product.feature
+├── screenshots/   
+├── pom.xml
+└── README.md
 
-stepdefinitions/
- ├── CheckoutSteps.java
- ├── LoginSteps.java
- ├── OrderHistorySteps.java
- └── PurchaseSteps.java
-
-features/
- └── purchasing-product.feature
-
-screenshots/
 ```
 
 - `pages/` – klasy Page Object odpowiedzialne za interakcję z UI
