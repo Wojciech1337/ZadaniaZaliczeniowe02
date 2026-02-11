@@ -34,11 +34,22 @@ Projekt został wykonany w ramach kursu Automatyzacji Testów.
 
 ---
 
+##  Wymagania
+
+Przed uruchomieniem testów automatycznych należy mieć zainstalowane:
+
+- **Java 21**
+- **Maven**
+- **Google Chrome**
+- **Git**
+- IDE (np. IntelliJ IDEA lub Eclipse)
+
 ## Struktura projektu
 
 Projekt jest zorganizowany zgodnie z dobrymi praktykami automatyzacji testów i wykorzystuje architekturę Page Object Model.
 
 ```
+ZadaniaZaliczeniowe02
 pages/
  ├── CheckoutPage.java
  ├── LoginPage.java
