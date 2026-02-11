@@ -71,6 +71,7 @@ screenshots/
 
 ```
 git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe02.git
+cd ZadaniaZaliczeniowe01
 ```
 
 2. Otwórz projekt w IntelliJ IDEA / Eclipse
