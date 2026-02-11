@@ -1,19 +1,26 @@
-# Zadanie Zaliczeniowe 2 – Automatyzacja Testów
+# Zadanie Zaliczeniowe 2 – Automatyzacja procesu zakupowego
 
 ## Opis projektu
 
-Projekt realizuje scenariusz automatyzacji testów z wykorzystaniem frameworka **Cucumber**, biblioteki **Selenium WebDriver** oraz wzorca **Page Object Model (POM)**.
+Projekt przedstawia automatyzację pełnego procesu zakupowego w sklepie internetowym z wykorzystaniem **Selenium WebDriver**, **Cucumber (BDD)** oraz wzorca **Page Object Model**.
 
-Testowany scenariusz dotyczy sklepu internetowego [MyStore TestLab](https://mystore-testlab.coderslab.pl), a celem jest:
+Automatyczny test odwzorowuje rzeczywiste zachowanie użytkownika i obejmuje:
 
-- zalogowanie się na istniejące konto użytkownika,
-- wyszukanie i zakup produktu **"Hummingbird Printed Sweater"**,
-- parametryzacja rozmiaru oraz ilości sztuk,
-- weryfikacja zastosowanego rabatu,
-- przejście przez proces zakupu (checkout),
+- logowanie do istniejącego konta,
+- wyszukanie produktu **Hummingbird Printed Sweater**,
+- parametryzację rozmiaru i ilości,
+- weryfikację rabatu,
+- przejście przez proces checkout,
 - wybór metody dostawy i płatności,
 - złożenie zamówienia,
-- zapisanie zrzutu ekranu z potwierdzeniem zakupu i ceną.
+- zapis zrzutu ekranu z potwierdzeniem zakupu i ceną.
+
+Testowany system:  
+👉 https://mystore-testlab.coderslab.pl
+
+Projekt został wykonany w ramach kursu Automatyzacji Testów.
+
+---
 
 ## Technologie
 
@@ -21,30 +28,75 @@ Testowany scenariusz dotyczy sklepu internetowego [MyStore TestLab](https://myst
 - Maven
 - Selenium WebDriver
 - Cucumber (BDD)
-- Page Object Model
 - JUnit
+- Page Object Model
 - WebDriverManager
+
+---
 
 ## Struktura projektu
 
-- `src/test/java/pl/coderslab/pages/` – klasy Page Object (np. `LoginPage`, `SearchProductPage`, `CheckoutPage`, `MyAccountPage`, `ProductDetailsPage`)
-- `src/test/java/pl/coderslab/stepdefinitions/` – definicje kroków scenariuszy Cucumbera, m.in.:
-- `LoginSteps.java` – logowanie do sklepu
-- `PurchaseSteps.java` - 
-- `CheckoutSteps.java` – finalizacja zamówienia i płatność
-- `OrderHistorySteps.java` - weryfikacja historii zamówień
-- `src/Cucumber/features` – pliki `.feature` z opisem scenariuszy testowych
-- `screenshots/` – katalog z zapisanymi zrzutami ekranu z potwierdzeniem zamówienia
+Projekt jest zorganizowany zgodnie z dobrymi praktykami automatyzacji testów i wykorzystuje architekturę Page Object Model.
 
+```
+pages/
+ ├── CheckoutPage.java
+ ├── LoginPage.java
+ ├── MyAccountPage.java
+ ├── ProductDetailsPage.java
+ └── SearchProductPage.java
 
-## Dane logowania testowego
+stepdefinitions/
+ ├── CheckoutSteps.java
+ ├── LoginSteps.java
+ ├── OrderHistorySteps.java
+ └── PurchaseSteps.java
 
+features/
+ └── purchasing-product.feature
+
+screenshots/
+```
+
+- `pages/` – klasy Page Object odpowiedzialne za interakcję z UI
+- `stepdefinitions/` – implementacja kroków Cucumber
+- `features/` – scenariusze testowe zapisane w Gherkin
+- `screenshots/` – zapisane zrzuty ekranu z wykonania testów
+
+---
+
+## Uruchomienie testów
+
+1. Sklonuj repozytorium:
+
+```
+git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe02.git
+```
+
+2. Otwórz projekt w IntelliJ IDEA / Eclipse
+
+3. Uruchom testy:
+
+```
+mvn test
+```
+
+lub bezpośrednio z pliku runnera Cucumber.
+
+---
+
+## Dane testowe
+
+Konto używane wyłącznie do celów testowych:
 
 - Email: `wojtek@wojtek.pl`
 - Hasło: `Masakra!23`
 
+---
+
 ## Autor
 
-Projekt wykonany w ramach kursu Automatyzacji Testów – CodersLab  
-Autor: [Wojciech Basista](https://github.com/Wojciech1337/ZadaniaZaliczeniowe01.git)
+Projekt wykonany w ramach kursu Automatyzacji Testów – CodersLab
 
+**Wojciech Basista**  
+https://github.com/Wojciech1337
