@@ -1,5 +1,14 @@
 # Zadanie Zaliczeniowe 2 – Automatyzacja procesu zakupowego
 
+---
+
+## Cel projektu
+
+Automatyzacja pełnego procesu zakupowego w sklepie internetowym z wykorzystaniem Page Object Model i Cucumber (BDD).  
+Projekt odzwierciedla rzeczywiste zachowanie użytkownika.
+
+---
+
 ## Opis projektu
 
 Projekt przedstawia automatyzację pełnego procesu zakupowego w sklepie internetowym z wykorzystaniem **Selenium WebDriver**, **Cucumber (BDD)** oraz wzorca **Page Object Model**.
@@ -44,6 +53,8 @@ Przed uruchomieniem testów automatycznych należy mieć zainstalowane:
 - **Git**
 - IDE (np. IntelliJ IDEA lub Eclipse)
 
+---
+
 ## Struktura projektu
 
 Projekt jest zorganizowany zgodnie z dobrymi praktykami automatyzacji testów i wykorzystuje architekturę Page Object Model.
@@ -82,7 +93,7 @@ screenshots/
 
 ```
 git clone https://github.com/Wojciech1337/ZadaniaZaliczeniowe02.git
-cd ZadaniaZaliczeniowe01
+cd ZadaniaZaliczeniowe02
 ```
 
 2. Otwórz projekt w IntelliJ IDEA / Eclipse
