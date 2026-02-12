@@ -60,25 +60,23 @@ Projekt jest zorganizowany zgodnie z dobrymi praktykami automatyzacji testów i 
 ```
 ZadaniaZaliczeniowe02/
 ├── src/
-│   ├── test/java/pl/coderslab/pages/
-│   │   ├── CheckoutPage.java
-│   │   ├── LoginPage.java
-│   │   ├── MyAccountPage.java
-│   │   ├── ProductDetailsPage.java
-│   │   └── SearchProductPage.java
-│   │
-│   └── test/java/pl/coderslab/stepdefinitions/
-│       ├── CheckoutSteps.java
-│       ├── LoginSteps.java
-│       ├── OrderHistorySteps.java
-│       └── PurchaseSteps.java
-│
-│   └── test/resources/Cucumber/features/
-│       └── purchasing-product.feature
+│   ├── test/
+│   │   ├── java/pl/coderslab/pages/
+│   │   │   ├── CheckoutPage.java
+│   │   │   ├── LoginPage.java
+│   │   │   ├── MyAccountPage.java
+│   │   │   ├── ProductDetailsPage.java
+│   │   │   └── SearchProductPage.java
+│   │   └── java/pl/coderslab/stepdefinitions/
+│   │       ├── CheckoutSteps.java
+│   │       ├── LoginSteps.java
+│   │       ├── OrderHistorySteps.java
+│   │       └── PurchaseSteps.java
+│   │   └── resources/Cucumber/features/
+│   │       └── purchasing-product.feature
 ├── screenshots/   
 ├── pom.xml
 └── README.md
-
 ```
 
 - `pages/` – klasy Page Object odpowiedzialne za interakcję z UI
